@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fon"
+
+
+    >
+
+
+    <TextView
+        android:text="Начало"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/level1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/description"
+        android:textColor="@android:color/black"
+        android:alpha="0.5"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Уровень 1"
+        android:textSize="40dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/level1"
+        android:layout_marginTop="83dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Играть"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp"
+        android:id="@+id/buttonlevel1"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        android:background="@android:color/transparent"
+        />
+
+
+</RelativeLayout>
