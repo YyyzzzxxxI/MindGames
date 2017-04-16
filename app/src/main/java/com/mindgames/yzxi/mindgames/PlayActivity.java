@@ -2,6 +2,7 @@ package com.mindgames.yzxi.mindgames;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ import android.widget.ViewFlipper;
 import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
-public class PlayActivity extends Activity {  //после нажатия на 'play', мутим слайдер
+public class PlayActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,18 @@ public class PlayActivity extends Activity {  //после нажатия на '
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
+
+
+        Button buttonLevel1 = (Button) findViewById(R.id.buttonlevel1);
+        buttonLevel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StartLevel1.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivityForResult(intent, 0);
+                overridePendingTransition(0,0); //0 for no animation
+            }
+        });
     }
 
     @Override
@@ -42,12 +55,7 @@ public class PlayActivity extends Activity {  //после нажатия на '
         // Получаем объект ViewFlipper
         final ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
 
-        // Создаем View и добавляем их в уже готовый flipper
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        int layouts[] = new int[]{ R.layout.pvlevel1, R.layout.pvlevel2 };
-
-        for (int layout : layouts) flipper.addView(inflater.inflate(layout, null));
 
         // Устанавливаем listener касаний, для последующего перехвата жестов
         RelativeLayout play = (RelativeLayout) findViewById(R.id.activity_play);
@@ -78,34 +86,6 @@ public class PlayActivity extends Activity {  //после нажатия на '
 
 
 
-        final Button button = (Button) findViewById(R.id.buttonlevel1);
-
-
-      Thread thread = new Thread(new Runnable() {
-
-
-            @Override
-            public void run() {
-                while (true) {
-                    button.setAlpha(1);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    button.setAlpha(0);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
-
-
-
     }
 
     @Override
@@ -120,6 +100,7 @@ public class PlayActivity extends Activity {  //после нажатия на '
         super.onDestroy();
 
     }
+
 
 
 }

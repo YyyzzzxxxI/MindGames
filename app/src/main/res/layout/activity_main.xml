@@ -19,55 +19,74 @@
 
     <Button
         android:text="Настройки"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:id="@+id/setting"
         android:visibility="invisible"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
+        android:textSize="15dp"
+        android:layout_above="@+id/records"
+        android:layout_marginBottom="10dp"
+        android:layout_alignLeft="@+id/records"
         />
 
     <Button
         android:text="Играть"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:id="@+id/play"
         android:visibility="invisible"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
-        android:onClick="play"/>
+        android:textSize="25dp"
+        android:onClick="play"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight ="true"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="65dp"
+        android:typeface="serif"/>
 
     <Button
         android:text="Музыка"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:id="@+id/music"
         android:visibility="invisible"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
+        android:textSize="15dp"
         android:onClick="offMusic"
-
-        />
+        android:layout_above="@+id/setting"
+        android:layout_marginBottom="10dp"
+        android:layout_alignLeft="@+id/setting"
+         />
 
     <Button
         android:text="Рекорды"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:id="@+id/records"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:visibility="invisible"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
-        android:textSize="12dp"/>
+        android:textSize="15dp"
+        android:layout_above="@+id/play"
+        android:layout_alignLeft="@+id/play"
+        android:layout_alignStart="@+id/play"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:text="by YzxI v.0.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/version"
+        android:textSize="10dp"/>
 
 </RelativeLayout>

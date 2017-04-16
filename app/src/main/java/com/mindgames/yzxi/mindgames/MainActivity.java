@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.VideoView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends Activity {
     boolean animGo=false;
@@ -129,10 +132,12 @@ public class MainActivity extends Activity {
         Button setting = (Button) findViewById(R.id.setting);
         Button play = (Button) findViewById(R.id.play);
         Button records = (Button) findViewById(R.id.records) ;
+        TextView version = (TextView) findViewById(R.id.version);
         music.setVisibility(View.VISIBLE);
         setting.setVisibility(View.VISIBLE);
         play.setVisibility(View.VISIBLE);
         records.setVisibility(View.VISIBLE);
+        version.setVisibility(View.VISIBLE);
     }
 
 
