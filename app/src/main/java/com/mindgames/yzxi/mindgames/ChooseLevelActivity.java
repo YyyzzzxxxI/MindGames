@@ -1,16 +1,15 @@
 package com.mindgames.yzxi.mindgames;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
@@ -18,7 +17,7 @@ import android.widget.ViewFlipper;
 import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
-public class PlayActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
+public class ChooseLevelActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +27,14 @@ public class PlayActivity extends Activity  {  //после нажатия на 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_play);
+        setContentView(R.layout.activity_chooselevel);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
 
-        Button buttonLevel1 = (Button) findViewById(R.id.buttonlevel1);
-        buttonLevel1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StartLevel1.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivityForResult(intent, 0);
-                overridePendingTransition(0,0); //0 for no animation
-            }
-        });
+
     }
 
     @Override
@@ -84,6 +74,20 @@ public class PlayActivity extends Activity  {  //после нажатия на 
             }
         });
 
+        WebView wv = (WebView) findViewById(R.id.wv);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl("file:///android_asset/web/index.html");
+
+        Button playlevel1 = (Button) findViewById(R.id.playlevel1);
+        playlevel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Level1Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivityForResult(intent, 0);
+                overridePendingTransition(0,0); //0 for no animation
+            }
+        });
 
 
     }

@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends Activity {
     boolean animGo=false;
     static boolean offMusic=false;
@@ -152,7 +150,7 @@ public class MainActivity extends Activity {
 
 
     public void play(View view) {
-        Intent intent = new Intent(this, PlayActivity.class);
+        Intent intent = new Intent(this, ChooseLevelActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivityForResult(intent, 0);
         overridePendingTransition(0,0); //0 for no animation

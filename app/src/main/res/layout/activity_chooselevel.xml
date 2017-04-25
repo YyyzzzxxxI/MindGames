@@ -4,7 +4,7 @@
     android:id="@+id/activity_play"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mindgames.yzxi.mindgames.PlayActivity"
+    tools:context="com.mindgames.yzxi.mindgames.ChooseLevelActivity"
     >
 
 
@@ -17,43 +17,61 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fon"
             >
-            <TextView
-                android:text="Начало"
-                android:layout_width="wrap_content"
+            <WebView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/level1"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/description"
-                android:textColor="@android:color/black"
-                android:alpha="0.5"
-                android:textSize="20dp" />
+                android:id="@+id/wv"
+
+                >
+
+            </WebView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Уровень 1"
-                android:textSize="40dp"
+                android:text="Запомни слова"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30dp"
                 android:textColor="@android:color/black"
-                android:id="@+id/level1"
-                android:layout_marginTop="83dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:id="@+id/head"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="В течение 5 секунд Вам необходимо будет запомнить"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/head"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:id="@+id/body1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="наибольшее количество слов"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/body1"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:id="@+id/body2"/>
 
             <Button
-                android:text="Играть"
+                android:text="Начать игру"
+                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="49dp"
-                android:id="@+id/buttonlevel1"
-                android:textColor="@android:color/black"
-                android:textSize="30dp"
-                android:textStyle="italic"
-                android:background="@android:color/transparent"
+                android:layout_below="@+id/body2"
+                android:layout_marginTop="20dp"
+                android:id="@+id/playlevel1"
+                android:background="@drawable/rounded"
                 />
+
+
         </RelativeLayout>
 
         <RelativeLayout
