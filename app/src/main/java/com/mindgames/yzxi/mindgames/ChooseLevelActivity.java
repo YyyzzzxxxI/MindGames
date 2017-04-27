@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
+
+import com.mindgames.yzxi.mindgames.Level1.Level1Activity;
 
 import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
@@ -74,9 +75,7 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
             }
         });
 
-        WebView wv = (WebView) findViewById(R.id.wv);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.loadUrl("file:///android_asset/web/index.html");
+
 
         Button playlevel1 = (Button) findViewById(R.id.playlevel1);
         playlevel1.setOnClickListener(new View.OnClickListener() {

@@ -5,34 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mindgames.yzxi.mindgames.ChooseLevelActivity"
+    android:background="#C0C0C0"
     >
 
 
     <ViewFlipper
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/flipper">
+        android:id="@+id/flipper"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/text"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    />
+            </RelativeLayout>
 
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             >
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/wv"
-
-                >
-
-            </WebView>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Запомни слова"
                 android:textStyle="bold"
-                android:layout_centerVertical="true"
+
                 android:layout_centerHorizontal="true"
                 android:textSize="30dp"
                 android:textColor="@android:color/black"
@@ -42,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="В течение 5 секунд Вам необходимо будет запомнить"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/head"
                 android:layout_centerHorizontal="true"
                 android:textColor="@android:color/black"
@@ -66,13 +82,15 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/body2"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/playlevel1"
                 android:background="@drawable/rounded"
                 />
 
 
         </RelativeLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:orientation="horizontal"
