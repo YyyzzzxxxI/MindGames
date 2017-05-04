@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@android:color/black</item>
+    </style>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.mindgames.yzxi.mindgames.Level1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.CountDownTimer;
@@ -111,7 +112,11 @@ public class Level1Activity extends Activity {
             }
 
             public void onFinish() {
-                timer.setText("done!");
+                Intent intent = new Intent(getApplicationContext(), Level1Itog.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivityForResult(intent, 0);
+                overridePendingTransition(0,0); //0 for no animation
+                finish();
 
             }
         }.start();
