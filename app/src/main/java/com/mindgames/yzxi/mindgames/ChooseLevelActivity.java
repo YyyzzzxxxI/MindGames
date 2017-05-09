@@ -3,6 +3,7 @@ package com.mindgames.yzxi.mindgames;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,8 @@ import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
 public class ChooseLevelActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,8 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent, 0);
                 overridePendingTransition(0,0); //0 for no animation
+                musicPlayer.pause();
+                finish();
             }
         });
 

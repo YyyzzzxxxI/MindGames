@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,7 +16,7 @@ import android.widget.VideoView;
 
 public class MainActivity extends Activity {
     boolean animGo=false;
-    static boolean offMusic=false;
+    public static boolean offMusic=false;
     boolean logoMistake=true;
 
     private VideoView animMain, logoView;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
             hello();
         }
         else {
-            animMain.start(); if(!offMusic)musicPlayer.start();
+            animMain.start();   if(!offMusic)musicPlayer.start();
         }
     }
 
@@ -154,5 +155,6 @@ public class MainActivity extends Activity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivityForResult(intent, 0);
         overridePendingTransition(0,0); //0 for no animation
+        Log.i("offMusicMain", offMusic+"");
     }
 }

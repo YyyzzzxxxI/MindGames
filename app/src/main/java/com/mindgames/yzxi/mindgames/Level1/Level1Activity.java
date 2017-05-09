@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.SurfaceView;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,11 +18,32 @@ import com.mindgames.yzxi.mindgames.R;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
 
 public class Level1Activity extends Activity {
 
-    boolean white=true;
+    boolean white=true, musicLevel1ActivityStart=false;
+    MediaPlayer musicLevel1Activity;
+    CountDownTimer countDownTimer;
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+       if(!offMusic) { //останавливаем музыку и чистим ее память
+           musicLevel1Activity.stop();
+           musicLevel1Activity.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+               public void onCompletion(MediaPlayer musicLevel1Activity) {
+                   musicLevel1Activity.release();
+               }
+           });
+       }
+       Log.i("destroyLevel1Activity","ok");
+       countDownTimer.cancel();
+        finish();
+    }
+
 
 
     @Override
@@ -37,7 +57,8 @@ public class Level1Activity extends Activity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
-        drawText();
+         drawText();
+        Log.i("YzxI", "14:20");
 
 
 
@@ -49,7 +70,7 @@ public class Level1Activity extends Activity {
 
 
 
-    public  int[] createArray(int libSize, int countRandTales) {  //уникальные числа
+   static public  int[] createArray(int libSize, int countRandTales) {  //уникальные числа
         Random rnd = new Random();
         int[] arr = new int[libSize];
         for (int i = 0; i < libSize; i++) arr[i] = i;
@@ -61,31 +82,15 @@ public class Level1Activity extends Activity {
         }
         return Arrays.copyOf(arr, countRandTales);
     }
-    void drawText(){
-        String[] array = new String[20];
-        array[0] = "Яблоко";
-        array[1] = "Апельсин";
-        array[2] = "Машина";
-        array[3] = "Комната";
-        array[4] = "Касса";
-        array[5] = "Ответ";
-        array[6] = "Свидание";
-        array[7] = "Юла";
-        array[8] = "Президент";
-        array[9] = "Конус";
-        array[10] = "Создать";
-        array[11] = "Избрать";
-        array[12] = "Футбол";
-        array[13] = "СССР";
-        array[14] = "Россия";
-        array[15] = "Трамп";
-        array[16] = "Путин";
-        array[17] = "Трампутыров";
-        array[18] = "Победа";
-        array[19] = "Поражение";
+     void drawText(){
+        final String[] array = new String[]{ "Яблоко", "Апельсин", "Машина","Комната","Касса","Ответ","Свидание",
+                                            "Юла", "Президент", "Конус","Создать","Избрать","Футбол","СССР",
+                                            "Россия", "Трамп", "Путин","Трампутыров","Победа","Поражение"};
 
-        int[] unicalN = createArray(20,8);
-        final String[] unicalA = new String[8];
+
+
+        final int[] unicalN = createArray(20,8);
+        String[] unicalAhelp = new String[8];   //уникальные слова, временная переменная, служит для передачи слов в финал
 
         TextView slovo1 = (TextView) findViewById(R.id.slovo1);  TextView slovo5 = (TextView) findViewById(R.id.slovo5);
         TextView slovo2 = (TextView) findViewById(R.id.slovo2);  TextView slovo6 = (TextView) findViewById(R.id.slovo6);
@@ -97,23 +102,36 @@ public class Level1Activity extends Activity {
         final TextView[] slova = {slovo1,slovo2,slovo3,slovo4,slovo5,slovo6,slovo7,slovo8};
 
 
-        for(int i =0; i<8; i++) {
-            unicalA[i]=array[unicalN[i]];
-            slova[i].setText(unicalA[i]);
-        }
+        for(int i =0; i<8; i++)
+            unicalAhelp[i]=array[unicalN[i]];
+
+        final String[] unicalA = new String[]{unicalAhelp[0],unicalAhelp[1],unicalAhelp[2],unicalAhelp[3],
+                                            unicalAhelp[4],unicalAhelp[5],unicalAhelp[6],unicalAhelp[7]};
+
+        for(int i=0; i<8;i++) slova[i].setText(unicalA[i]);
 
 
-        new CountDownTimer(10000, 1000) {  //таймер на 10сек, каждую сек инфа обновляется
+
+
+
+        countDownTimer= new CountDownTimer(13700, 600) {  //таймер на 13.7сек, каждые 0.6сек инфа обновляется
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Времени осталось " + millisUntilFinished / 1000);
-                changeMaket(slova,timer,unicalA);
+                if(!musicLevel1ActivityStart && !offMusic)musicLevel1Activity();
+                Log.i("offMusicLevel1Activity", offMusic+"");
+                if(millisUntilFinished<=9500) changeMaket(slova,timer,unicalA);
+
 
             }
 
             public void onFinish() {
                 Intent intent = new Intent(getApplicationContext(), Level1Itog.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("unicalA", unicalA);
+                intent.putExtra("unicalN",unicalN);
+                intent.putExtra("array",array);
+                if(!offMusic)if(musicLevel1Activity.isPlaying())musicLevel1Activity.stop();
                 startActivityForResult(intent, 0);
                 overridePendingTransition(0,0); //0 for no animation
                 finish();
@@ -152,8 +170,24 @@ public class Level1Activity extends Activity {
             slova[i].setText(unicalSwap[i]);
         }
 
+    }
 
+    private void musicLevel1Activity(){
+        musicLevel1ActivityStart=true;
+        musicLevel1Activity = MediaPlayer.create(this, R.raw.start128);
 
+        musicLevel1Activity.setLooping(true);
+        //Установка обработчика события на момент готовности проигрывателя:
+        musicLevel1Activity.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+        {
+            public void onPrepared(MediaPlayer musicLevel1Activity)
+            {
+                //При готовности к проигрыванию запуск вывода звука:
+                musicLevel1Activity.start();
+            }
+        });
     }
 
 }
+
+

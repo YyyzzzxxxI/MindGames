@@ -18,9 +18,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChooseLevelActivity" />
-        <activity android:name=".StartLevel1" />
-        <activity android:name=".Level1.Level1Activity" />
-        <activity android:name=".Level1.Level1Itog"></activity>
+        <activity android:name=".Level1.Level1Activity"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity android:name=".Level1.Level1Itog"
+            android:configChanges="orientation|screenSize">
+
+        </activity>
     </application>
 
 </manifest>
