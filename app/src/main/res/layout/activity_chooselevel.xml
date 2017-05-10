@@ -8,7 +8,12 @@
     android:background="#C0C0C0"
     >
 
-
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/strelka"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
     <ViewFlipper
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="В течение 5 секунд Вам необходимо будет запомнить"
+                android:text="В течение 13 секунд Вам необходимо будет запомнить"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/head"
                 android:layout_centerHorizontal="true"
@@ -67,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="наибольшее количество слов"
+                android:text="наибольшее количество слов (8)"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/body1"
                 android:layout_centerHorizontal="true"
