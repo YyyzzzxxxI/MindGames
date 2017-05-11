@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_play"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mindgames.yzxi.mindgames.ChooseLevelActivity"
+    android:background="#C0C0C0"
+    >
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/strelka"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/flipper"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/text"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    />
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Запомни слова"
+                android:textStyle="bold"
+
+                android:layout_centerHorizontal="true"
+                android:textSize="80dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/head"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="В течение 13 секунд Вам необходимо будет запомнить"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/head"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="40dp"
+                android:id="@+id/body1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="наибольшее количество слов (8)"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/body1"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="40dp"
+                android:id="@+id/body2"/>
+
+            <Button
+                android:text="Начать игру"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/body2"
+                android:layout_marginTop="50dp"
+                android:id="@+id/playlevel1"
+                android:background="@drawable/rounded"
+                android:textSize="40dp"
+                />
+
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="В разработке..."
+                android:textSize="30dp"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+</RelativeLayout>
