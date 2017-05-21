@@ -7,7 +7,10 @@
     tools:context="com.mindgames.yzxi.mindgames.ChooseLevelActivity"
     android:background="#C0C0C0"
     >
-
+<WebView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/wv"></WebView>
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

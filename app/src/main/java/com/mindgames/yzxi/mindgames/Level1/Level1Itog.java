@@ -125,13 +125,7 @@ public class Level1Itog extends Activity {
          badArray[i] = array[badN[i]];    //тут создался массив из 4 неправ ответов
 
 
-
-
-
-
-
-
-            for (int i=0;i<4;i++){
+        for (int i=0;i<4;i++){
                 for(int j=0;j<12;j++)
                 if(checkBoxes[j].getText().equals("NULL")) {   //заполняется массив неправильных чекбоксов
                     badCheckBoxes[i]=checkBoxes[j];

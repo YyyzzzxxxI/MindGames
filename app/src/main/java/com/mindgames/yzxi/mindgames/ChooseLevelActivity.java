@@ -5,15 +5,20 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mindgames.yzxi.mindgames.Level1.Level1Activity;
 
 import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
@@ -21,7 +26,8 @@ import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
 public class ChooseLevelActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
 
-
+    String test;
+   static boolean name=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +95,26 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
                 startActivityForResult(intent, 0);
                 overridePendingTransition(0,0); //0 for no animation
                 musicPlayer.pause();
+
                 finish();
             }
         });
 
 
-    }
+        if(name){new MaterialDialog.Builder(this)
+                .title("Добро пожаловать!")
+                .titleGravity(GravityEnum.CENTER)
+                .content("Представьтесь")
+                .contentGravity(GravityEnum.CENTER)
+                .input("Введите ваше имя", "Игрок1", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        test= input.toString();
+                        name=false;
+                    }
+                })
+                .show();
+    }}
 
     @Override
     protected void onPause() {
