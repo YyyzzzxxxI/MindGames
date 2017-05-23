@@ -14,13 +14,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class MainActivity extends Activity {
-    boolean animGo=false;
-    public static boolean offMusic=false;
-    boolean logoMistake=true;
+    boolean animGo = false;
+    public static boolean offMusic = false;
+    boolean logoMistake = true;
 
     private VideoView animMain, logoView;
     static MediaPlayer musicPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +45,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(logoMistake){
+        if (logoMistake) {
             musicMain();
             hello();
-        }
-        else {
-            animMain.start();   if(!offMusic)musicPlayer.start();
+        } else {
+            animMain.start();
+            if (!offMusic) musicPlayer.start();
         }
     }
 
@@ -55,8 +58,10 @@ public class MainActivity extends Activity {
     protected void onPause() {
         super.onPause();
         musicPlayer.pause();
-        if(logoMistake)logoView.stopPlayback();
-        else { animMain.stopPlayback();}
+        if (logoMistake) logoView.stopPlayback();
+        else {
+            animMain.stopPlayback();
+        }
     }
 
     @Override
@@ -64,29 +69,29 @@ public class MainActivity extends Activity {
         super.onDestroy();
         //останавливаем музыку и чистим ее память
         musicPlayer.stop();
-        musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-        {
-            public void onCompletion(MediaPlayer musicPlayer)
-            {
+        musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer musicPlayer) {
                 musicPlayer.release();
             }
         });
 
-        if(logoMistake)logoView.stopPlayback();
-        else { animMain.stopPlayback();}
+        if (logoMistake) logoView.stopPlayback();
+        else {
+            animMain.stopPlayback();
+        }
 
     }
 
-    private void hello(){        //запуск лого и анимации мейна
+    private void hello() {        //запуск лого и анимации мейна
 
         logoView = (VideoView) findViewById(R.id.mainAnim);
-        logoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() +"/"+R.raw.logo));
+        logoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.logo));
         logoView.start();
 
         logoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                logoMistake=false;
+                logoMistake = false;
 
                 animMain();
                 buttons();
@@ -94,31 +99,29 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void animMain(){
+    private void animMain() {
         //анимация начало
         animMain = (VideoView) findViewById(R.id.mainAnim);
-        animMain.setVideoURI(Uri.parse("android.resource://" + getPackageName() +"/"+R.raw.anim));
+        animMain.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.anim));
         animMain.start();
 
-        animGo=true;
+        animGo = true;
         animMain.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer animPlayer) {  //зацикливание видюхи
-                if(animGo) animPlayer.start();
+                if (animGo) animPlayer.start();
             }
         });
     }
 
 
-    private void musicMain(){
+    private void musicMain() {
         musicPlayer = MediaPlayer.create(this, R.raw.song);
 
         musicPlayer.setLooping(true);
         //Установка обработчика события на момент готовности проигрывателя:
-        musicPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-        {
-            public void onPrepared(MediaPlayer musicPlayer)
-            {
+        musicPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            public void onPrepared(MediaPlayer musicPlayer) {
                 //При готовности к проигрыванию запуск вывода звука:
                 musicPlayer.start();
             }
@@ -126,17 +129,19 @@ public class MainActivity extends Activity {
 
     }
 
-    private void buttons(){  //раскрываем кнопки
+    private void buttons() {  //раскрываем кнопки
         Button music = (Button) findViewById(R.id.music);
         Button setting = (Button) findViewById(R.id.setting);
         Button play = (Button) findViewById(R.id.play);
-        Button records = (Button) findViewById(R.id.records) ;
+        Button records = (Button) findViewById(R.id.records);
         TextView version = (TextView) findViewById(R.id.version);
+        GifImageView headPhones = (GifImageView) findViewById(R.id.headphones);
         music.setVisibility(View.VISIBLE);
         setting.setVisibility(View.VISIBLE);
         play.setVisibility(View.VISIBLE);
         records.setVisibility(View.VISIBLE);
         version.setVisibility(View.VISIBLE);
+        headPhones.setVisibility(View.VISIBLE);
     }
 
 
@@ -144,9 +149,15 @@ public class MainActivity extends Activity {
 
         Button music = (Button) findViewById(R.id.music);
 
-        if(!offMusic) {musicPlayer.pause(); offMusic=true; music.setAlpha((float)0.5);}
-
-       else {musicPlayer.start(); offMusic=false; music.setAlpha(1);}
+        if (!offMusic) {
+            musicPlayer.pause();
+            offMusic = true;
+            music.setAlpha((float) 0.5);
+        } else {
+            musicPlayer.start();
+            offMusic = false;
+            music.setAlpha(1);
+        }
     }
 
 
@@ -154,7 +165,15 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, ChooseLevelActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivityForResult(intent, 0);
-        overridePendingTransition(0,0); //0 for no animation
-        Log.i("offMusicMain", offMusic+"");
+        overridePendingTransition(0, 0); //0 for no animation
+
+    }
+
+    public void openRecords(View view) {
+        Intent intent = new Intent(this, RecordsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivityForResult(intent, 0);
+        overridePendingTransition(0, 0); //0 for no animation
+
     }
 }

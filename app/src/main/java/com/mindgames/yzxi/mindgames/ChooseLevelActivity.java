@@ -19,6 +19,7 @@ import android.widget.ViewFlipper;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mindgames.yzxi.mindgames.DataBase.DBManager;
 import com.mindgames.yzxi.mindgames.Level1.Level1Activity;
 
 import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
@@ -26,8 +27,9 @@ import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
 public class ChooseLevelActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
 
-    String test;
+    public static String ProfilePlayer;
    static boolean name=true;
+     DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
+
+        dbManager = DBManager.getInstance(this);
 
 
 
@@ -109,7 +113,7 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
                 .input("Введите ваше имя", "Игрок1", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
-                        test= input.toString();
+                        ProfilePlayer= input.toString();
                         name=false;
                     }
                 })

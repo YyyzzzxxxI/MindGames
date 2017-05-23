@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+
+import com.mindgames.yzxi.mindgames.DataBase.DBManager;
 
 public class RecordsActivity extends AppCompatActivity {
-
+    private DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +25,13 @@ public class RecordsActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
+
+        dbManager = DBManager.getInstance(this);
+
+        TextView stata = (TextView)this.findViewById(R.id.stata);
+
+        int nGames = dbManager.getNgames();
+        double sred = dbManager.getSrednee();
+        stata.setText("Количество сыгранных игр: "+ nGames + "\n"+"Среднее количество набранных очков: "+ sred );
     }
 }

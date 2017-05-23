@@ -20,10 +20,12 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mindgames.yzxi.mindgames.ChooseLevelActivity;
+import com.mindgames.yzxi.mindgames.DataBase.DBManager;
 import com.mindgames.yzxi.mindgames.R;
 
 import java.util.ArrayList;
 
+import static com.mindgames.yzxi.mindgames.ChooseLevelActivity.ProfilePlayer;
 import static com.mindgames.yzxi.mindgames.Level1.Level1Activity.createArray;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
@@ -35,6 +37,7 @@ public class Level1Itog extends Activity {
     int checkValue=0;  //чтобы не было нажато больше 8 чеков (MyOnCheckedChangeListener)
     boolean showResult=false; //если результат будет показан, то кнопка "ок" будет перекидывать на выбор уровня
     MediaPlayer  musicLevel1Itog;
+    private DBManager dbManager;
 
 
     @Override
@@ -67,6 +70,8 @@ public class Level1Itog extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
         if(!offMusic)musicLevel1Itog();
         Log.i("offMusic", offMusic+"");
+
+        dbManager = DBManager.getInstance(this);
         setValue();
 
         for(int i=0;i<12;i++)
@@ -194,6 +199,9 @@ public class Level1Itog extends Activity {
                 r = 71;
                 g = 198;
             }  //зеленый
+            Log.i("YzxI", ProfilePlayer);
+            Log.i("YzxI", score+"");
+            dbManager.addResult(ProfilePlayer,score );
 
             new MaterialDialog.Builder(this)
                     .titleGravity(GravityEnum.CENTER)
@@ -230,6 +238,8 @@ public class Level1Itog extends Activity {
                         }
                     })
                     .show();
+
+
             }
 
         else {

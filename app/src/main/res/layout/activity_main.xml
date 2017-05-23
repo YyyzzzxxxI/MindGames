@@ -76,10 +76,11 @@
         android:layout_alignStart="@+id/play"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:onClick="openRecords"/>
 
     <TextView
-        android:text="by YzxI v.0.1"
+        android:text="by YzxI v.1.0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
@@ -88,5 +89,14 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/version"
         android:textSize="10dp"/>
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/headphones"
+        android:src="@drawable/headphones"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

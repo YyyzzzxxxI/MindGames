@@ -8,9 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DBManager {
-    /*
-     * TABLES: ------- RESULTS SCORE INTEGER USER VARCHAR
-     */
+
     private Context context;
     private String DB_NAME = "game.db";
 
@@ -32,7 +30,7 @@ public class DBManager {
         createTablesIfNeedBe();
     }
 
-    void addResult(String username, int score) {
+   public void addResult(String username, int score) {
         db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + score + ");");
     }
 
@@ -61,7 +59,7 @@ public class DBManager {
         return dbFile.exists();
     }
 
-    int  getNgames()
+   public int  getNgames()
     {
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
         cursor.moveToFirst();
@@ -69,7 +67,7 @@ public class DBManager {
         return res;
     }
 
-    double getSrednee(){
+  public   double getSrednee(){
         Cursor cursor = db.rawQuery("SELECT AVG(SCORE) FROM RESULTS;", null);  //AVG среднее
         cursor.moveToFirst();
         double sred = cursor.getDouble(0);
