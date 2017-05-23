@@ -7,11 +7,15 @@
     tools:context="com.mindgames.yzxi.mindgames.RecordsActivity"
     android:background="#C0C0C0">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:textColor="@android:color/black"
-        android:id="@+id/stata"/>
+        android:id="@+id/stata"></TextView>
+
+
 
 </RelativeLayout>

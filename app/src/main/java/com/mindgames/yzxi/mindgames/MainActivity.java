@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.mindgames.yzxi.mindgames.DataBase.DBManager;
+
+import java.util.ArrayList;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends Activity {
@@ -24,6 +28,7 @@ public class MainActivity extends Activity {
     private VideoView animMain, logoView;
     static MediaPlayer musicPlayer;
 
+    private DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,10 @@ public class MainActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
+
+        dbManager = DBManager.getInstance(this);
+
+
 
     }
 
@@ -175,5 +184,9 @@ public class MainActivity extends Activity {
         startActivityForResult(intent, 0);
         overridePendingTransition(0, 0); //0 for no animation
 
+    }
+
+    public void openSettings(View view) {
+        dbManager.clear();
     }
 }

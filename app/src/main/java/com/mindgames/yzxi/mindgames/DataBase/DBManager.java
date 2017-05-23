@@ -34,7 +34,11 @@ public class DBManager {
         db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + score + ");");
     }
 
-    ArrayList<Result> getAllResults() {
+    public void clear(){
+        db.execSQL("delete from RESULTS");
+    }
+
+   public ArrayList<Result> getAllResults() {
 
         ArrayList<Result> data = new ArrayList<Result>();
         Cursor cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
@@ -51,7 +55,7 @@ public class DBManager {
     }
 
     private void createTablesIfNeedBe() {
-        db.execSQL("CREATE TABLE IF NOT EXISTS RESULTS (USERNAME TEXT, SCORE INTEGER);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS RESULTS (USERNAME TEXT, SCORE INTEGER);"); //создать таблицу results
     }
 
     private boolean dbExist() {

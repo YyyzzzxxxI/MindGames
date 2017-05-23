@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.mindgames.yzxi.mindgames.DataBase.DBManager;
 
+import static com.mindgames.yzxi.mindgames.MainActivity.musicPlayer;
+import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
+
 public class RecordsActivity extends AppCompatActivity {
     private DBManager dbManager;
     @Override
@@ -25,6 +28,7 @@ public class RecordsActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
+        if (!offMusic) musicPlayer.start();
 
         dbManager = DBManager.getInstance(this);
 
@@ -32,6 +36,7 @@ public class RecordsActivity extends AppCompatActivity {
 
         int nGames = dbManager.getNgames();
         double sred = dbManager.getSrednee();
-        stata.setText("Количество сыгранных игр: "+ nGames + "\n"+"Среднее количество набранных очков: "+ sred );
+        stata.setText("Количество сыгранных игр: "+ nGames + "\n"+"Среднее количество набранных очковv: "+ sred );
+
     }
 }

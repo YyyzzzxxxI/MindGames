@@ -29,6 +29,7 @@
         android:layout_above="@+id/records"
         android:layout_marginBottom="25dp"
         android:layout_alignLeft="@+id/records"
+        android:onClick="openSettings"
         />
 
     <Button

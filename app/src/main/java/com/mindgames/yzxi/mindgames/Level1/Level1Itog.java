@@ -69,9 +69,10 @@ public class Level1Itog extends Activity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
         if(!offMusic)musicLevel1Itog();
-        Log.i("offMusic", offMusic+"");
+
 
         dbManager = DBManager.getInstance(this);
+
         setValue();
 
         for(int i=0;i<12;i++)
@@ -79,7 +80,7 @@ public class Level1Itog extends Activity {
 
 
 
-        Log.i("YzxIitog", "15:21");
+
     }
 
     void setValue(){
@@ -160,6 +161,7 @@ public class Level1Itog extends Activity {
         }
 
         score= goodScore+badScore;
+
         return score;   //8 - максимум очков
     }
 
