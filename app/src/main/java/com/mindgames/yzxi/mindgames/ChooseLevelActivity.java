@@ -3,6 +3,7 @@ package com.mindgames.yzxi.mindgames;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.afollestad.materialdialogs.GravityEnum;
@@ -27,8 +29,9 @@ import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
 public class ChooseLevelActivity extends Activity  {  //после нажатия на 'play', мутим слайдер
 
-    public static String ProfilePlayer;
-   static boolean name=true;
+
+
+   public static boolean name=true;
      DBManager dbManager;
 
     @Override
@@ -46,7 +49,7 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
         dbManager = DBManager.getInstance(this);
-
+        Log.i("YzxI","22:29");
 
 
     }
@@ -110,14 +113,22 @@ public class ChooseLevelActivity extends Activity  {  //после нажати�
                 .titleGravity(GravityEnum.CENTER)
                 .content("Представьтесь")
                 .contentGravity(GravityEnum.CENTER)
-                .input("Введите ваше имя", "Игрок1", new MaterialDialog.InputCallback() {
+                .inputRange(2, 10, Color.RED)
+                .input("Введите ваше имя (от 2 до 10 символов)", "Игрок1", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
-                        ProfilePlayer= input.toString();
-                        name=false;
+
+                        if( dbManager.checkProfile(input.toString())) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Выбран уже существующий пользователь.Изменить можно в настройках", Toast.LENGTH_SHORT).show();
+                            name=false;
+
+                        }
+                        else {
+                            dbManager.addProfile(input.toString());
+                        name=false;}
                     }
-                })
-                .show();
+                }).show();
     }}
 
     @Override

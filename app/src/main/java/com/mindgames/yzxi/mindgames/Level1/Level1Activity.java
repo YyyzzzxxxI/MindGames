@@ -39,7 +39,7 @@ public class Level1Activity extends Activity {
                }
            });
        }
-       Log.i("destroyLevel1Activity","ok");
+
        countDownTimer.cancel();
         finish();
     }
@@ -58,7 +58,7 @@ public class Level1Activity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //экран не погаснет
 
          drawText();
-        Log.i("YzxI", "14:20");
+
 
 
 

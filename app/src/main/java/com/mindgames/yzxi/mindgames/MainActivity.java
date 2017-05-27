@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,8 +14,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.mindgames.yzxi.mindgames.DataBase.DBManager;
-
-import java.util.ArrayList;
+import com.mindgames.yzxi.mindgames.Level1.Level1Activity;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -26,7 +24,7 @@ public class MainActivity extends Activity {
     boolean logoMistake = true;
 
     private VideoView animMain, logoView;
-    static MediaPlayer musicPlayer;
+   public static MediaPlayer musicPlayer;
 
     private DBManager dbManager;
     @Override
@@ -187,6 +185,9 @@ public class MainActivity extends Activity {
     }
 
     public void openSettings(View view) {
-        dbManager.clear();
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivityForResult(intent, 0);
+        overridePendingTransition(0,0); //0 for no animation
     }
 }

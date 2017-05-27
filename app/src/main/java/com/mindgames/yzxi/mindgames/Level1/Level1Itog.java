@@ -25,7 +25,8 @@ import com.mindgames.yzxi.mindgames.R;
 
 import java.util.ArrayList;
 
-import static com.mindgames.yzxi.mindgames.ChooseLevelActivity.ProfilePlayer;
+
+import static com.mindgames.yzxi.mindgames.DataBase.DBManager.id;
 import static com.mindgames.yzxi.mindgames.Level1.Level1Activity.createArray;
 import static com.mindgames.yzxi.mindgames.MainActivity.offMusic;
 
@@ -78,7 +79,7 @@ public class Level1Itog extends Activity {
         for(int i=0;i<12;i++)
             checkBoxes[i].setOnCheckedChangeListener(new MyOnCheckedChangeListener());
 
-
+        Log.i("YzxI", id+"");
 
 
     }
@@ -201,9 +202,10 @@ public class Level1Itog extends Activity {
                 r = 71;
                 g = 198;
             }  //зеленый
-            Log.i("YzxI", ProfilePlayer);
-            Log.i("YzxI", score+"");
-            dbManager.addResult(ProfilePlayer,score );
+
+
+            if(dbManager.getNprofile()==0) dbManager.addProfile("Игрок1");
+            dbManager.addResult(dbManager.getProfile(id),score );
 
             new MaterialDialog.Builder(this)
                     .titleGravity(GravityEnum.CENTER)

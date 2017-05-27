@@ -24,8 +24,10 @@
         <activity
             android:name=".Level1.Level1Itog"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".RecordsActivity" />
-        <activity android:name=".Test"></activity>
+        <activity
+            android:name=".RecordsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
