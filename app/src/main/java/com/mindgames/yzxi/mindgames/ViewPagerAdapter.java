@@ -3,9 +3,7 @@ package com.mindgames.yzxi.mindgames;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
-
-
+import android.util.Log;
 
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -29,22 +27,33 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     //This method return the fragment for the every position in the View Pager
     @Override
-    public Fragment getItem(int position) {
+  public Fragment getItem(int position) {
+        Log.i("YzxI","tt");
 
-        if(position == 0) // if the position is 0 we are returning the First tab
+
+        if (position == 0) // if the position is 0 we are returning the First tab
         {
+
+
             Records_tab_1 tab1 = new Records_tab_1();
 
             return tab1;
+
         }
-        if(position == 1)
-        {
+
+
+
+        if (position == 1) {
+
+
             Records_tab_2 tab2 = new Records_tab_2();
 
             return tab2;
         }
-        else
-        {
+
+        else{
+
+
             Records_tab_3 tab3 = new Records_tab_3();
 
             return tab3;

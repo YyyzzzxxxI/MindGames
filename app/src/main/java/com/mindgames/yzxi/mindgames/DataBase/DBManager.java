@@ -101,23 +101,47 @@ public class DBManager {
     public int getNprofile(){        //количество профилей
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM PROFILE;", null);
         cursor.moveToFirst();
+
         return cursor.getInt(0);
     }
 
     synchronized public int  getNgames()
     {
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
-        cursor.moveToFirst();
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
+            cursor.moveToFirst();
 
-        return cursor.getInt(0);
+            return cursor.getInt(0);
+        } finally {
+            // this gets called even if there is an exception somewhere above
+            if(cursor != null)
+                cursor.close();
+        }
+
+
+
     }
 
     synchronized public float getNSrednee(){                 //всего в среднем набранных очков
 
-        Cursor cursor = db.rawQuery("SELECT AVG(SCORE) FROM RESULTS;", null);  //AVG среднее
-        cursor.moveToFirst();
 
-        return Float.parseFloat ( (new BigDecimal(cursor.getFloat(0))).setScale(2,ROUND_HALF_UP).toString() );
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT AVG(SCORE) FROM RESULTS;", null);  //AVG среднее
+            cursor.moveToFirst();
+
+            return Float.parseFloat ( (new BigDecimal(cursor.getFloat(0))).setScale(2,ROUND_HALF_UP).toString() );
+
+        } finally {
+            // this gets called even if there is an exception somewhere above
+            if(cursor != null)
+                cursor.close();
+        }
+
+
+
+
 
     }
 
@@ -181,43 +205,69 @@ public class DBManager {
 
     synchronized public String[] getAllPlayer(){                         //тупо все игры по списку
 
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
-        cursor.moveToFirst();
+        Cursor cursor = null;
+        String[] games;
+        try {
+            cursor =  db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
+            cursor.moveToFirst();
+            int N=cursor.getInt(0);
 
-        int N=cursor.getInt(0);
+             games= new String[N];
 
-        String[] games = new String[N];
+            cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
 
-        cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
+            boolean go=cursor.moveToFirst();
 
-
-        boolean go=cursor.moveToFirst();
-
-        while (go){
-            games[cursor.getPosition()]=cursor.getString(cursor.getColumnIndex("USERNAME"));
-            go=cursor.moveToNext();
+            while (go){
+                games[cursor.getPosition()]=cursor.getString(cursor.getColumnIndex("USERNAME"));
+                go=cursor.moveToNext();
+            }
+        } finally {
+            // this gets called even if there is an exception somewhere above
+            if(cursor != null)
+                cursor.close();
         }
+
+
+
+
+
         return  games;
     }
 
     synchronized public String[] getAllScores(){                         //тупо все очки по списку
+        String [] scores;
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
+            cursor.moveToFirst();
+            int N=cursor.getInt(0);
 
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
-        cursor.moveToFirst();
+            scores = new String[N];
 
-        int N=cursor.getInt(0);
-
-        String[] scores = new String[N];
-
-        cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
+            cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
 
 
-        boolean go = cursor.moveToFirst();
+            boolean go = cursor.moveToFirst();
 
-        while (go){
-            scores[cursor.getPosition()]= Integer.toString(cursor.getInt(cursor.getColumnIndex("SCORE")));
-            go=cursor.moveToNext();
+            while (go){
+                scores[cursor.getPosition()]= Integer.toString(cursor.getInt(cursor.getColumnIndex("SCORE")));
+                go=cursor.moveToNext();
+            }
+
+
+        } finally {
+            // this gets called even if there is an exception somewhere above
+            if(cursor != null)
+                cursor.close();
         }
+
+
+
+
+
+
+
         return  scores;
     }
 

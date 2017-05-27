@@ -59,6 +59,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         /**
          * @return return the color of the indicator used when {@code position} is selected.
          */
+
         int getIndicatorColor(int position);
 
     }

@@ -76,10 +76,11 @@ public class RecordsActivity extends ActionBarActivity {
 
 
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+
             @Override
-            public int getIndicatorColor(int position) {
-                if(position==0) list1();
-                if (position==1)list2();
+             public int getIndicatorColor(final int position) {
+                if(position==0)list1();
+                if(position==1)list2();
                 return getResources().getColor(R.color.tabsScrollColor);
             }
         });
