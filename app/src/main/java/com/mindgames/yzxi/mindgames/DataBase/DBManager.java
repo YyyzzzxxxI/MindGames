@@ -104,7 +104,7 @@ public class DBManager {
         return cursor.getInt(0);
     }
 
-   public int  getNgames()
+    synchronized public int  getNgames()
     {
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
         cursor.moveToFirst();
@@ -112,7 +112,7 @@ public class DBManager {
         return cursor.getInt(0);
     }
 
-    public float getNSrednee(){                 //всего в среднем набранных очков
+    synchronized public float getNSrednee(){                 //всего в среднем набранных очков
 
         Cursor cursor = db.rawQuery("SELECT AVG(SCORE) FROM RESULTS;", null);  //AVG среднее
         cursor.moveToFirst();
@@ -179,7 +179,7 @@ public class DBManager {
     }
 
 
-    public String[] getAllPlayer(){                         //тупо все игры по списку
+    synchronized public String[] getAllPlayer(){                         //тупо все игры по списку
 
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
         cursor.moveToFirst();
@@ -191,7 +191,7 @@ public class DBManager {
         cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
 
 
-        boolean go = cursor.moveToFirst();
+        boolean go=cursor.moveToFirst();
 
         while (go){
             games[cursor.getPosition()]=cursor.getString(cursor.getColumnIndex("USERNAME"));
@@ -200,7 +200,7 @@ public class DBManager {
         return  games;
     }
 
-    public String[] getAllScores(){                         //тупо все очки по списку
+    synchronized public String[] getAllScores(){                         //тупо все очки по списку
 
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
         cursor.moveToFirst();
